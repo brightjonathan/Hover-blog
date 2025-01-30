@@ -16,7 +16,7 @@ const initialState = {
   };
 
 
-const Register = ({setisAuth}) => {
+const Register = ({setIsAuth}) => {
 
 
     const navigate = useNavigate();
@@ -46,13 +46,78 @@ const Register = ({setisAuth}) => {
           };
 
 
+
+          const validateForm = () => {
+            let newErrors = {};
+        
+            // Validate username
+            if (!username) {
+              newErrors.username = 'Username is required';
+            }
+      
+            // Validate email
+            if (!email) {
+              newErrors.email = 'Email is required';
+            } else if (!/\S+@\S+\.\S+/.test(email)) {
+              newErrors.email = 'Email is invalid';
+            }
+      
+            // Validate password
+            if (!password) {
+              newErrors.password = 'Password is required';
+            } else if (password.length < 6) {
+              newErrors.password = 'Password must be at least 6 characters long';
+            }
+        
+            // Validate confirm password
+            if (!confirmPassword) {
+              newErrors.confirmPassword = 'ConfirmPassword is required';
+            } else if (confirmPassword !== password) {
+              newErrors.confirmPassword = 'Passwords do not match';
+            }
+        
+            setErrors(newErrors);
+        
+            // Return true if there are no errors
+            return Object.keys(newErrors).length === 0;
+          };
+
+
+
+
+            const handleSubmit = async (e) => {
+                e.preventDefault();
+  
+                if(validateForm()){
+          
+                  try {
+                    setLoading(true);
+                    if (username && email && password ){
+                     const {user} = await createUserWithEmailAndPassword(
+                       auth, email, password
+                     );
+                     await updateProfile(user, {displayName: `${username}`})
+                     setLoading(false);
+                     localStorage.setItem('isAuth', true);
+                     setIsAuth(true);
+                     navigate('/')
+                     setLoading(false);
+                    }  
+                   } catch (error) {
+                     console.error(error)
+                     setLoading(false);
+                   }
+              }
+            }
+
+
   return (
     <div className='pt-[20vh]'>
     {loading && 'loading...'}
  <div className='max-w-[800px] m-auto px-4 pb-16'>
    <div className=' dark:bg-[#e8edea] px-10 py-8 rounded-lg text-black'>
      <h1 className='text-2xl font-bold text-green-800 ' > Register Account </h1> 
-     <form>
+     <form  onSubmit={handleSubmit} >
 
        <div className='grid md:grid-cols-2 md:gap-8'>
 
@@ -85,7 +150,7 @@ const Register = ({setisAuth}) => {
                value={email}
                onChange={handleChange}
              />
-             <AiOutlineMail className='absolute right-2 top-3 text-gray-400' /> 
+             <AiOutlineMail className='absolute right-2 top-4 text-gray-400' /> 
            </div>
            {errors.email && ( <span className="text-red-500">{errors.email}</span>)}
          </div> 
@@ -105,7 +170,7 @@ const Register = ({setisAuth}) => {
                value={password}
                onChange={handleChange}
              />
-             <div className='absolute right-2 top-3'>
+             <div className='absolute right-2 top-4'>
                {(passwordEye === false) ? <AiFillEyeInvisible onClick={handlePasswordEye} className='text-gray-400'/> : <AiFillEye onClick={handlePasswordEye} className='text-gray-400'/>}
              </div>
            {errors.password && ( <span className="text-red-500">{errors.password}</span>)}
@@ -124,7 +189,7 @@ const Register = ({setisAuth}) => {
                value={confirmPassword}
                onChange={handleChange}
              />
-             <div className='absolute right-2 top-3'>
+             <div className='absolute right-2 top-4'>
                {(confirmPasswordEye === false) ? <AiFillEyeInvisible onClick={handleConfirmPasswordEye} className='text-gray-400'/> : <AiFillEye onClick={handleConfirmPasswordEye} className='text-gray-400'/>}
              </div>
              {errors.confirmPassword && ( <span className="text-red-500">{errors.confirmPassword}</span>)}
@@ -140,7 +205,7 @@ const Register = ({setisAuth}) => {
      
      <hr className="my-6 border-gray-300 w-full" />
   
-     <GoogleAuth setisAuth={setisAuth}/>
+     <GoogleAuth setIsAuth={setIsAuth}/>
 
      <p className='my-4'>Already have an account? <Link className='text-[#986c55] underline' to={'/login'}> Login </Link></p>
    </div>
