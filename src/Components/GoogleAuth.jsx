@@ -13,7 +13,7 @@ const GoogleAuth = ({setIsAuth}) => {
       signInWithPopup(auth, provider).then((result) => {
         localStorage.setItem("isAuth", true);
         setIsAuth(true)
-        navigate('/create-post');
+        navigate('/');
       }).catch((error) => {
         console.log(error.message);
       })
