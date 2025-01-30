@@ -86,7 +86,7 @@ const Login = ({setIsAuth}) => {
      
         <GoogleAuth setIsAuth={setIsAuth}/>
 
-        <p className='my-4'>Don't have an account? <Link className='text-[#986c55] underline' to={'/register'}>sign up</Link></p>
+        <p className='my-4'>Don't have an account? <Link className='text-[#986c55] underline' to={'/register'}> Register </Link></p>
       </div>
     </div>
   </div>

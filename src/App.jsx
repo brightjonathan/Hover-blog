@@ -8,6 +8,7 @@ import CreateForm from './Pages/CreateForm';
 import { auth } from '../Firebase-config';
 import { signOut } from "firebase/auth";
 import EditPost from './Pages/EditPost';
+import Register from './Pages/Register';
 
 const App = () => {
 
@@ -34,6 +35,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home isAuth={isAuth} />} />
         <Route path="/login" element={<Login setIsAuth={setIsAuth} />}/>
+        <Route path="/register" element={<Register setIsAuth={setIsAuth} />}/>
         <Route path='/create-post' element={<CreateForm isAuth={isAuth} />} />
         <Route path='/edit-post/:id' element={<EditPost isAuth={isAuth} />} />
       </Routes>
