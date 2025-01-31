@@ -9,6 +9,8 @@ import { auth } from '../Firebase-config';
 import { signOut } from "firebase/auth";
 import EditPost from './Pages/EditPost';
 import Register from './Pages/Register';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 
 const App = () => {
 
@@ -20,6 +22,7 @@ const App = () => {
     if (window.confirm("Are you sure you want to sign out?")) {
         signOut(auth).then(() => {
           localStorage.removeItem('isAuth');
+          toast.success('You have successfully signed out');
           setIsAuth(false);
           navigate('/');
         }).catch((error) => {
@@ -30,6 +33,7 @@ const App = () => {
 
   return (
     <div>
+      <ToastContainer position='top-right' theme="colored" />
       <Navbar isAuth={isAuth} logout={logout} />
 
       <Routes>

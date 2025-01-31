@@ -5,6 +5,7 @@ import {FaRegUser} from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import GoogleAuth from '../Components/GoogleAuth';
 import { auth } from '../../Firebase-config';
+import { toast } from "react-toastify";
 
 
 
@@ -93,10 +94,11 @@ const Register = ({setIsAuth}) => {
                   try {
                     setLoading(true);
                     if (username && email && password ){
-                     const {user} = await createUserWithEmailAndPassword(
-                       auth, email, password
-                     );
-                     await updateProfile(user, {displayName: `${username}`})
+                      const {user} = await createUserWithEmailAndPassword(
+                        auth, email, password
+                      );
+                      await updateProfile(user, {displayName: `${username}`})
+                      toast.success('signup successfully');
                      setLoading(false);
                      localStorage.setItem('isAuth', true);
                      setIsAuth(true);
@@ -104,6 +106,7 @@ const Register = ({setIsAuth}) => {
                      setLoading(false);
                     }  
                    } catch (error) {
+                    toast.error('user already exit')
                      console.error(error)
                      setLoading(false);
                    }
@@ -207,7 +210,7 @@ const Register = ({setIsAuth}) => {
   
      <GoogleAuth setIsAuth={setIsAuth}/>
 
-     <p className='my-4'>Already have an account? <Link className='text-[#986c55] underline' to={'/login'}> Login </Link></p>
+     <p className='my-4'>Already have an account? <Link className='text-[#986c55] underline text-[15px]' to={'/login'}> Login </Link></p>
    </div>
  </div>
 </div>
