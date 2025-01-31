@@ -46,7 +46,6 @@ const App = () => {
         <Route path='/edit-post/:id' element={<EditPost isAuth={isAuth} />} />
       </Routes>
 
-
     </div>
   )
 };
