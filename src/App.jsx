@@ -11,6 +11,7 @@ import EditPost from './Pages/EditPost';
 import Register from './Pages/Register';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
+import ResetPassword from './Pages/ResetPassword';
 
 const App = () => {
 
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/" element={<Home isAuth={isAuth} />} />
         <Route path="/login" element={<Login setIsAuth={setIsAuth} />}/>
         <Route path="/register" element={<Register setIsAuth={setIsAuth} />}/>
+        <Route path="/reset" element={<ResetPassword />} />
         <Route path='/create-post' element={<CreateForm isAuth={isAuth} />} />
         <Route path='/edit-post/:id' element={<EditPost isAuth={isAuth} />} />
       </Routes>
