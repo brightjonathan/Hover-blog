@@ -10,7 +10,7 @@ import { signOut } from "firebase/auth";
 import EditPost from './Pages/EditPost';
 import Register from './Pages/Register';
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"
+import "react-toastify/dist/ReactToastify.css";
 import ResetPassword from './Pages/ResetPassword';
 
 const App = () => {

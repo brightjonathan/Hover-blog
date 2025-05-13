@@ -1,5 +1,4 @@
-import React from 'react'
-import { FcGoogle } from 'react-icons/fc'
+import { FcGoogle } from 'react-icons/fc';
 import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { provider, auth } from '../../Firebase-config';

@@ -7,6 +7,7 @@ const Navbar = ({isAuth, logout}) => {
     <nav className='nav'> 
 
      <Link to='/'>Blog</Link>
+     
 
      {
       !isAuth ? (  <Link to='/login'>Login</Link> ):(

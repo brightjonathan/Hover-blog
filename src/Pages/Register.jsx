@@ -14,7 +14,7 @@ const initialState = {
     email: '',
     password: '',
     confirmPassword: '',
-  };
+};
 
 
 const Register = ({setIsAuth}) => {
@@ -119,7 +119,7 @@ const Register = ({setIsAuth}) => {
     {loading && 'loading...'}
  <div className='max-w-[800px] m-auto px-4 pb-16'>
    <div className=' dark:bg-[#e8edea] px-10 py-8 rounded-lg text-black'>
-     <h1 className='text-2xl font-bold text-green-800 ' > Register Account </h1> 
+     <h1 className='text-2xl font-bold text-green-800 ' > Register Account </h1>
      <form  onSubmit={handleSubmit} >
 
        <div className='grid md:grid-cols-2 md:gap-8'>
@@ -128,14 +128,12 @@ const Register = ({setIsAuth}) => {
            <label>Username</label>
            <div className='my-2 w-full relative'>
              <input
-               
-               className='w-full p-2 border border-gray-400 bg-transparent rounded-lg' 
+               className='w-full p-2 border border-gray-400 bg-transparent rounded-lg'
                type="text" 
                placeholder='Enter your username'
                name="username"
                value={username}
                onChange={handleChange}
-             
              />
              <FaRegUser className='absolute right-2 top-3 text-gray-400' />
            </div>
@@ -146,7 +144,7 @@ const Register = ({setIsAuth}) => {
            <label>Email Address</label>
            <div className='my-2 w-full relative'>
              <input
-               className='w-full p-2 border border-gray-400 bg-transparent rounded-lg' 
+               className='w-full p-2 border border-gray-400 bg-transparent rounded-lg'
                type="email" 
                placeholder='Enter Email Address'
                name="email"
@@ -164,9 +162,9 @@ const Register = ({setIsAuth}) => {
 
        <div className='md:my-4'>
            <label>Password</label>
-           <div className='my-2 w-full relative '>
+           <div className='my-2 w-full relative'>
              <input
-               className='w-full p-2 border border-gray-400 bg-transparent rounded-lg' 
+               className='w-full p-2 border border-gray-400 bg-transparent rounded-lg'
                type={(passwordEye === false) ? 'password' : 'text'} 
                placeholder='Enter your Password'
                name="password"
