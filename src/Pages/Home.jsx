@@ -53,7 +53,7 @@ const Home = ({isAuth}) => {
               <div className="post" key={post.id}>
                 <div className='postHeader'>
                   <div className="title">
-                    <h1>{post.title}</h1>
+                    <h1 className='text-[4vh] font-bold'>{post.title}</h1>
                   </div>
                   <div className="deletePost">
                     {isAuth && post.author.id === auth.currentUser.uid && 
